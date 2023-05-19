@@ -1,0 +1,12 @@
+time,Allan-Cole,Bora,Chase,Class-Martinez,Cole,Dinakar,Fransen,Gitman,Guo,Hubbard,Lewis,Oliver,Pettit,Ramirez-Velez,Richard,Santiago-Colon,Schauer,Shabnam,Sorourifar,Tahsini,Webber,Wilkerson,Wu,Zhou
+S1M1,Catalysis,Catalysis,RVL,TWR,EVS,GWH,AJB,BFPLab,VZ,BFP,MM,DJK,GWHLab,RMM,SPLab,Catalysis,OSV,MDG,VZLab,GWHLab,MS,Catalysis,IH,MDGLab
+S1M2,Catalysis,Catalysis,BFP,GWHLab,JY,GWHLab,BFPLab,SPP,DJK,EVS,RVL,MDGLab,RMM,SPLab,BFPLab,Catalysis,SPLab,OSV,MS,GWH,VZLab,Catalysis,VZ,AJB
+S1M3,GWHLab,SPP,BFPLab,MG,Systems,MS,Systems,RMM,MDG,Systems,AJB,Systems,IH,DML,EVS,TWR,BFP,Systems,OSV,RVL,Systems,VZ,MMLab,Systems
+S1M4,MMLab,SPLab,IH,CTM,Systems,MM,Systems,EVS,RVL,Systems,DML,Systems,TWR,BFP,OSV,GWH,AJB,Systems,MDG,DMLLab,Systems,JY,GWHLab,Systems
+S1M5,VZ,PR,Biological,MS,VZLab,MMLab,DML,SPLab,MG,JY,DMLLab,DMLLab,MM,OSV,RMM,GWHLab,Biological,BFP,CTM,Biological,IH,RVLLab,GWH,RVL
+S1M6,TWR,DML,Biological,BFP,VZ,RVL,SPP,GWH,MDGLab,OSV,MMLab,RVLLab,BFPLab,EVS,-,MMLab,Biological,RMM,CTMLab,Biological,MM,SPLab,MS,MDG
+S1M7,CTM,JY,TWR,Materials,OSV,Materials,BFP,Materials,Materials,BFPLab,Materials,DML,Materials,Materials,Materials,MM,-,SPLab,Materials,MS,GWHLab,RVL,Materials,RVLLab
+S1M8,MS,OSV,GWH,Materials,CTM,Materials,SPLab,Materials,Materials,PR,Materials,MDG,Materials,Materials,Materials,RVL,DML,BFPLab,Materials,RVLLab,MMLab,RMM,Materials,EVS
+S1M9,VZLab,DMLLab,GWHLab,BFPLab,CTMLab,TWR,EVS,GWHLab,RVLLab,SPLab,VZ,MG,MS,DMLLab,JY,RVLLab,BFPLab,MDGLab,RMM,DML,GWH,OSV,MM,SPLab
+S1M10,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+total,8.0,8.0,8.0,8.0,8.0,8.0,8.0,8.0,8.0,8.0,8.0,8.0,8.0,8.0,8.0,8.0,8.0,8.0,8.0,8.0,8.0,8.0,8.0,8.0

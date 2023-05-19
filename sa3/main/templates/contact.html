@@ -1,0 +1,61 @@
+{% extends "main.html" %}
+{% load static %}
+
+  {% block content %}
+
+  <section id="main">
+    <br/>
+
+    <div class="card text-center" style = "width:90%; left:5%; display: block">
+      <div class="card-header">
+        <h4>Contact Us</h4>
+
+      </div>
+      <div class="card-body">
+        <p class="font-weight-bold text-left ml-4" style = "font-size: 20px">Main Developers: </p>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Victor Zavala</th>
+              <td>victor.zavala@wisc.edu</td>
+              <td>PI</td>
+            </tr>
+            <tr>
+              <th scope="row">Yue (Ricky) Shao</th>
+              <td>yshao44@wisc.edu</td>
+              <td>Mathematical Model Development</td>
+            </tr>
+            <tr>
+              <th scope="row">Yicheng Hu</th>
+              <td>yhu267@wisc.edu</td>
+              <td>Website and Tool Development</td>
+            </tr>
+          </tbody>
+        </table>
+
+        </div>
+      </div>
+      <div class="text-muted text-center">
+          <br/>
+          <div style = "font-size: 0.6em;">Copyright &copy 2020 Board of Regents of the University of Wisconsin System </div>
+      </div>
+
+    <br/>
+  </section>
+  {% endblock content %}
+
+{% block jscode %}
+<script>
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
+  </script>
+{% endblock jscode %}
+</html>

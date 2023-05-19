@@ -1,0 +1,119 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block content %}
+
+<section id="main">
+  {% csrf_token %}
+  <br/>
+
+  <div class="card" style = "min-width:950px">
+
+    <div class="card-header">
+        <div class="row align-items-center">
+          <div class = "col text-left">
+            <div class = "btn-group">
+              <a  class = "btn btn-light btn-sm" href = '/dashboard'>
+                <ion-icon name="arrow-back-circle-outline" class = "iconpiclarger align-middle"></ion-icon> Dashborad
+              </a>
+              <a  class = "btn btn-light btn-sm" href = '/dashboard/modellist'>
+                <ion-icon name="list" class = "iconpiclarger align-middle"></ion-icon> Model List
+              </a>
+              <a  class = "btn btn-light btn-sm" href = '/dashboard/modellist/{{task.id}}'>
+                <ion-icon name="aperture" class = "iconpiclarger align-middle"></ion-icon> {{task.name}}
+              </a>
+            </div>
+          </div>
+
+          <div class = "col text-center">
+            <h4 class = "card-title align-vertical text-body" >Event Data</h4>
+          </div>
+          <div class = "col text-right invisible">
+            <div class = "btn-group">
+              <a  class = "btn btn-light btn-sm" href = '/'>
+                <ion-icon name="arrow-back-circle-outline" class = "iconpiclarger align-middle"></ion-icon> Dashborad
+              </a>
+              <a  class = "btn btn-light btn-sm" href = '/'>
+                <ion-icon name="list" class = "iconpiclarger align-middle"></ion-icon> Model List
+              </a>
+              <a  class = "btn btn-light btn-sm" href = '/'>
+                <ion-icon name="aperture" class = "iconpiclarger align-middle"></ion-icon> {{task.name}}
+              </a>
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+    <div class="card-body">
+      <br/>
+
+      <div class = "container "style="width: 40%; left: 30%">
+        <div class="form-group">
+          <label for="FacultyTime">Select Event Time Data: </label>
+            <select class="form-control" id="EventTime">
+
+            </select>
+        </div>
+
+        <br/>
+        <button class = "btn btn-light border btn-block" onclick = "skipstep4()">Skip</button>
+        <button class = "btn btn-light border btn-block" onclick = "">Confirm</button>
+      </div>
+      <br/>
+
+
+
+    </div>
+  </div>
+  <br/>
+
+</section>
+{% endblock content %}
+
+{% block jscode %}
+<script type="text/javascript">
+  /*function confirmstep4(){
+    var facultytime = $('#TalkTime').val();
+    var studentpref = $('#TalkPref').val();
+    alertify.confirm('Confirm', 'Confirm?',
+    function() {
+      var el = document.getElementsByName("csrfmiddlewaretoken");
+      csrf_value = el[0].getAttribute("value");
+      jQuery.ajax({
+        method: "POST",
+        url: "/dashboard/modellist/{{task.id}}/3",
+        data: {talktime:facultytime, talkpref: studentpref,csrfmiddlewaretoken: csrf_value},
+        success: function (data) {
+          if (data.success) {
+            window.location.reload();
+          }
+        }
+      })
+  },
+    null).set('labels',{ok:'Yes', cancel:'Cancel'}).set('closable', false);
+  }*/
+
+function skipstep4(){
+
+  alertify.confirm('Skip', 'Skip this step??',
+  function() {
+    var el = document.getElementsByName("csrfmiddlewaretoken");
+    csrf_value = el[0].getAttribute("value");
+    jQuery.ajax({
+      method: "POST",
+      url: "/dashboard/modellist/{{task.id}}/4",
+      data: {mode: 'skip',csrfmiddlewaretoken: csrf_value},
+      success: function (data) {
+        if (data.success) {
+          window.location.reload();
+        }
+      }
+    })
+},
+  null).set('labels',{ok:'Yes', cancel:'Cancel'}).set('closable', false);
+
+  }
+</script>
+
+{% endblock jscode %}

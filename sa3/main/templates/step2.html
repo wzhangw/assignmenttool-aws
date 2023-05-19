@@ -1,0 +1,278 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block content %}
+
+<section id="main">
+  {% csrf_token %}
+  <br/>
+
+  <div class="card" style = "min-width:950px">
+
+    <div class="card-header">
+        <div class="row align-items-center">
+          <div class = "col text-left">
+            <div class = "btn-group">
+              <a  class = "btn btn-light btn-sm" href = '/dashboard'>
+                <ion-icon name="arrow-back-circle-outline" class = "iconpiclarger align-middle"></ion-icon> Dashborad
+              </a>
+              <a  class = "btn btn-light btn-sm" href = '/dashboard/modellist'>
+                <ion-icon name="list" class = "iconpiclarger align-middle"></ion-icon> Model List
+              </a>
+              <a  class = "btn btn-light btn-sm" href = '/dashboard/modellist/{{task.id}}'>
+                <ion-icon name="aperture" class = "iconpiclarger align-middle"></ion-icon> {{task.name}}
+              </a>
+            </div>
+          </div>
+
+          <div class = "col text-center">
+            <h4 class = "card-title align-vertical text-body" >Faculty Availability Data</h4>
+          </div>
+          <div class = "col text-right invisible">
+            <div class = "btn-group">
+              <a  class = "btn btn-light btn-sm" href = '/'>
+                <ion-icon name="arrow-back-circle-outline" class = "iconpiclarger align-middle"></ion-icon> Dashborad
+              </a>
+              <a  class = "btn btn-light btn-sm" href = '/'>
+                <ion-icon name="list" class = "iconpiclarger align-middle"></ion-icon> Model List
+              </a>
+              <a  class = "btn btn-light btn-sm" href = '/'>
+                <ion-icon name="aperture" class = "iconpiclarger align-middle"></ion-icon> {{task.name}}
+              </a>
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+    <div class="card-body">
+
+      <div class = "container "style="width: 60%; left: 30%; text-align: center">
+        This table specifies the availability of faculty/lab at different time slots.
+      </div>
+      <div class = "container "style="width: 60%; left: 30%; text-align: center">
+        0 = Faculty/lab is not available at the time slot. 1 = Faculty/lab is available at the time slot.
+      </div>
+
+      <br/>
+
+      <div class = "container "style="width: 40%; left: 30%">
+        <div class="btn-group btn-group" style = "width: 100%">
+          <button type="button" class="btn btn-light border" style = "width: 14.3%" data-toggle="tooltip" data-placement="top" title="Upload CSV data file" onclick="uploadData()">Upload Data</button>
+          <!--button type="button" class="btn btn-light border" style = "width: 14.3%" data-toggle="tooltip" data-placement="top" title="Download data template file" onclick="downloadTemplate()">Download Template</button-->
+        </div>
+      </div>
+
+
+
+        <div class = "container mt-4 p-0 border" style="width: 100%; left: 0%; height: 400px; overflow: scroll; box-shadow: 7px 7px 7px #d3d3d3; font-size:18px" id = "contentbox">
+
+        </div>
+        <script type="text/javascript">
+          var intFrameHeight = $(window).height()
+          var contentheight = 360/760*intFrameHeight;
+          try {
+          $("#contentbox").css('height', contentheight);}
+          catch {}
+
+          {% if faculty%}
+          var fac = {{faculty|safe}}
+          fac.unshift("Time/Faculty")
+          var time = {{facultytime|safe}}
+          {% else %}
+          var fac = ["Time/Faculty", "Professor 1", "Professor 2", "Professor 3", "Professor 4", "Professor 5"]
+
+          var time = [["Time 1","1","0","1","1","0"],
+                      ["Time 2","1","1","0","1","1"],
+                      ["Time 3","0","1","0","1","1"],
+                      ["Time 4","1","1","1","1","0"],
+                      ["Time 5","0","1","1","1","1"], ]
+
+          {% endif %}
+
+          const dataframe = [
+              fac,
+            ];
+          for (var i = 0; i < time.length; i++) {
+            dataframe.push(time[i])
+          }
+
+            const container = document.getElementById('contentbox');
+            const hot = new Handsontable(container, {
+              licenseKey: 'non-commercial-and-evaluation',
+              data: dataframe,
+              rowHeaders: true,
+              colHeaders: true,
+              contextMenu: true
+
+            });
+
+
+        </script>
+
+
+      <div class = "container mt-4"style="width: 40%; left: 30%">
+        <div class="btn-group btn-group" style = "width: 100%">
+          <button type="button" class="btn btn-light border" style = "width: 14.3%" data-toggle="tooltip" data-placement="top" title="Save data in the model" onclick="save()">Save</button>
+          <button type="button" class="btn btn-light border" style = "width: 14.3%" data-toggle="tooltip" data-placement="top" title="Save data and go to next step" onclick="save(go=true)">Save & Next Step</button>
+        </div>
+      </div>
+
+      <div style="display:none;">
+      <div style="text-align: center" class = "data_upload">
+
+        <strong class = "">Data Template: </strong>
+        <table class="table table-hover mt-2" style = "font-size:15px">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Prof. 1</th>
+            <th scope="col">Prof. 2</th>
+            <th scope="col">...</th>
+            <th scope="col">Lab 1</th>
+            <th scope="col">Lab 2</th>
+            <th scope="col">...</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">12:30 PM</th>
+            <td>1</td>
+            <td>0</td>
+            <td>...</td>
+            <td>1</td>
+            <td>1</td>
+            <td>...</td>
+          </tr>
+          <tr>
+            <th scope="row">01:00 PM</th>
+            <td>1</td>
+            <td>1</td>
+            <td>...</td>
+            <td>0</td>
+            <td>1</td>
+            <td>...</td>
+          </tr>
+          <tr>
+            <th scope="row">01:30 PM</th>
+            <td>0</td>
+            <td>1</td>
+            <td>...</td>
+            <td>1</td>
+            <td>0</td>
+            <td>...</td>
+          </tr>
+          <tr>
+            <th scope="row">...</th>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+          </tr>
+        </tbody>
+      </table>
+
+          <div class="card text-center" style = "background-color:#F5F5F5">
+            <div class="card-body">
+              <h6 class = "card-title">{{dataform.datafile.label}}</h6>
+              <div class="input-group mb-3 text-left">
+                <div class="custom-file">
+                  {{dataform.datafile}}
+                    <label class="custom-file-label text-truncate" for="id_datafile" id = 'id_datafile_label'>
+                      Choose file
+                    </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        <br/>
+        <input style="display:none;" id = 'uploadbtm' class = "btn btn-light border" type="submit" value="Upload" name="upload_file"/>
+
+        </div>
+        </div>
+
+    </div>
+  </div>
+  <br/>
+
+</section>
+{% endblock content %}
+
+{% block jscode %}
+<script type="text/javascript">
+
+  function UpdateLabel(){
+    e = document.getElementsByClassName("custom-file-input")[0].files[0].name;
+    $('#id_datafile_label').html(e);
+  }
+
+  function save(go = false){
+    alertify.confirm('Confirm', 'Save data?',
+    function() {
+      var el = document.getElementsByName("csrfmiddlewaretoken");
+      csrf_value = el[0].getAttribute("value");
+      jQuery.ajax({
+        method: "POST",
+        url: "/ajax/step2save",
+        data: {dataframe:JSON.stringify(dataframe), csrfmiddlewaretoken: csrf_value, modelid: "{{task.id}}"},
+        success: function (data) {
+          if (data.success) {
+            if (go) {
+              window.location = "/dashboard/modellist/{{task.id}}/3"
+            } else {
+              alertify.success("Data Saved")
+            }
+          } else {
+            for (var i = 0; i < data.msg.length; i++) {
+              alertify.error(data.msg[i])
+            }
+          }
+        }
+      })
+  },
+    null).set('labels',{ok:'Yes', cancel:'Cancel'}).set('closable', false);
+  }
+
+  function uploadData(){
+    var datauploadHTML = $('.data_upload').html();
+    $('.data_upload').html("");
+    alertify.confirm(datauploadHTML).set('onok', function(closeEvent) {
+
+      var el = document.getElementsByName("csrfmiddlewaretoken");
+      csrf_value = el[0].getAttribute("value");
+      var formData = new FormData();
+      formData.append('datafile', $('#id_datafile')[0].files[0]);
+      formData.append('csrfmiddlewaretoken', csrf_value);
+      formData.append('modelid', {{task.id}})
+      $.ajax({
+        type: "POST",
+        url: "/ajax/step2dataupload",
+        processData: false,
+        contentType: false,
+        data: formData,
+        async: false,
+        success: function (data) {
+          if (data.success) {
+            window.location.reload();
+          } else {
+            for (var i = 0; i < data.msg.length; i++) {
+              alertify.error(data.msg[i])
+            }
+          }
+        }
+      });
+
+      $('.data_upload').html(datauploadHTML);
+    }).set('oncancel', function(closeEvent){
+      $('.data_upload').html(datauploadHTML);
+    }).set('title', "Upload Data File").set('labels', {ok:'Upload', cancel:'Cancel'}).set('closable',false);
+  }
+
+  function downloadTemplate(){
+    console.log(data)
+  }
+</script>
+
+{% endblock jscode %}

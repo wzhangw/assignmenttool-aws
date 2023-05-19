@@ -1,0 +1,12 @@
+time,AJB,MG,MDG,IH,GWH,DJK,DML,CTM,MM,RMM,SPP,BFP,PR,TWR,MS,EVS,RVL,OSV,JY,VZ,BFPLab,SPLab,RVLLab,VZLab,MDGLab,GWHLab,CTMLab,DMLLab,MMLab,Biological,Materials,Catalysis,Systems
+S1M1,Fransen,-,Shabnam,Wu,Dinakar,Oliver,-,-,Lewis,Ramirez-Velez,-,Hubbard,-,Class-Martinez,Webber,Cole,Chase,Schauer,-,Guo,Gitman,Richard,-,Sorourifar,Zhou,Pettit + Tahsini,-,-,-,-,-,Allan-Cole + Bora + Santiago-Colon + Wilkerson,-
+S1M2,Zhou,-,-,-,Tahsini,Guo,-,-,-,Pettit,Gitman,Chase,-,-,Sorourifar,Hubbard,Lewis,Shabnam,Cole,Wu,Fransen + Richard,Ramirez-Velez + Schauer,-,Webber,Oliver,Class-Martinez + Dinakar,-,-,-,-,-,Allan-Cole + Bora + Santiago-Colon + Wilkerson,-
+S1M3,Lewis,Class-Martinez,Guo,Pettit,-,-,Ramirez-Velez,-,-,Gitman,Bora,Schauer,-,Santiago-Colon,Dinakar,Richard,Tahsini,Sorourifar,-,Wilkerson,Chase,-,-,-,-,Allan-Cole,-,-,Wu,-,-,-,Cole + Fransen + Hubbard + Oliver + Shabnam + Webber + Zhou
+S1M4,Schauer,-,Sorourifar,Chase,Santiago-Colon,-,Lewis,Class-Martinez,Dinakar,-,-,Ramirez-Velez,-,Pettit,-,Gitman,Guo,Richard,Wilkerson,-,-,Bora,-,-,-,Wu,-,Tahsini,Allan-Cole,-,-,-,Cole + Fransen + Hubbard + Oliver + Shabnam + Webber + Zhou
+S1M5,-,Guo,-,Webber,Wu,-,Fransen,Sorourifar,Pettit,Richard,-,Shabnam,Bora,-,Class-Martinez,-,Zhou,Ramirez-Velez,Hubbard,Allan-Cole,-,Gitman,Wilkerson,Cole,-,Santiago-Colon,-,Lewis + Oliver,Dinakar,Chase + Schauer + Tahsini,-,-,-
+S1M6,-,-,Zhou,-,Gitman,-,Bora,-,Webber,Shabnam,Fransen,Class-Martinez,-,Allan-Cole,Wu,Ramirez-Velez,Dinakar,Hubbard,-,Cole,Pettit,Wilkerson,Oliver,-,Guo,-,Sorourifar,-,Lewis + Santiago-Colon,Chase + Schauer + Tahsini,-,-,-
+S1M7,-,-,-,-,-,-,Oliver,Allan-Cole,Santiago-Colon,-,-,Fransen,-,Chase,Tahsini,-,Wilkerson,Cole,Bora,-,Hubbard,Shabnam,Zhou,-,-,Webber,-,-,-,-,Class-Martinez + Dinakar + Gitman + Guo + Lewis + Pettit + Ramirez-Velez + Richard + Sorourifar + Wu,-,-
+S1M8,-,-,Oliver,-,Chase,-,Schauer,Cole,-,Wilkerson,-,-,Hubbard,-,Allan-Cole,Zhou,Santiago-Colon,Bora,-,-,Shabnam,Fransen,Tahsini,-,-,-,-,-,Webber,-,Class-Martinez + Dinakar + Gitman + Guo + Lewis + Pettit + Ramirez-Velez + Richard + Sorourifar + Wu,-,-
+S1M9,-,Oliver,-,-,Webber,-,Tahsini,-,Wu,Sorourifar,-,-,-,Dinakar,Pettit,Fransen,-,Wilkerson,Richard,Lewis,Class-Martinez + Schauer,Hubbard + Zhou,Guo + Santiago-Colon,Allan-Cole,Shabnam,Chase + Gitman,Cole,Bora + Ramirez-Velez,-,-,-,-,-
+S1M10,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+total,4.0,3.0,5.0,4.0,7.0,2.0,7.0,4.0,6.0,7.0,3.0,7.0,4.0,6.0,8.0,7.0,8.0,9.0,5.0,6.0,9.0,10.0,6.0,4.0,4.0,10.0,2.0,5.0,6.0,6.0,20.0,8.0,14.0

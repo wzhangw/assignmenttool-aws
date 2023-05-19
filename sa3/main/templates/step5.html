@@ -1,0 +1,128 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block content %}
+
+<section id="main">
+  {% csrf_token %}
+  <br/>
+
+  <div class="card" style = "min-width:950px">
+
+    <div class="card-header">
+        <div class="row align-items-center">
+          <div class = "col text-left">
+            <div class = "btn-group">
+              <a  class = "btn btn-light btn-sm" href = '/dashboard'>
+                <ion-icon name="arrow-back-circle-outline" class = "iconpiclarger align-middle"></ion-icon> Dashborad
+              </a>
+              <a  class = "btn btn-light btn-sm" href = '/dashboard/modellist'>
+                <ion-icon name="list" class = "iconpiclarger align-middle"></ion-icon> Model List
+              </a>
+              <a  class = "btn btn-light btn-sm" href = '/dashboard/modellist/{{task.id}}'>
+                <ion-icon name="aperture" class = "iconpiclarger align-middle"></ion-icon> {{task.name}}
+              </a>
+            </div>
+          </div>
+
+          <div class = "col text-center">
+            <h4 class = "card-title align-vertical text-body" >Other Data</h4>
+          </div>
+          <div class = "col text-right invisible">
+            <div class = "btn-group">
+              <a  class = "btn btn-light btn-sm" href = '/'>
+                <ion-icon name="arrow-back-circle-outline" class = "iconpiclarger align-middle"></ion-icon> Dashborad
+              </a>
+              <a  class = "btn btn-light btn-sm" href = '/'>
+                <ion-icon name="list" class = "iconpiclarger align-middle"></ion-icon> Model List
+              </a>
+              <a  class = "btn btn-light btn-sm" href = '/'>
+                <ion-icon name="aperture" class = "iconpiclarger align-middle"></ion-icon> {{task.name}}
+              </a>
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+    <div class="card-body">
+      <br/>
+
+
+      <div class = "container "style="width: 40%; left: 30%">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" data-toggle="tooltip" data-placement="left" title="This specifies the targeted number of faculty/labs a student should meet in total." id="basic-addon3">Target number of faculty/labs per student</span>
+          </div>
+          <input type="number" class="form-control" value="{{task.t_val}}" aria-label="t_value" aria-describedby="basic-addon3" id = "t_value">
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" data-toggle="tooltip" data-placement="left" title="This specifies the minimum number of faculty/labs a student should meet in total." id="basic-addon2">Min. faculty/labs per student</span>
+          </div>
+          <input type="number" class="form-control" value="{{task.n_val}}" aria-label="n_value" aria-describedby="basic-addon2" id = "n_value">
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" data-toggle="tooltip" data-placement="left" title="This specifies the maximum number of students each faculty/lab can meet in total. Will be set to a large number if not specified." id="basic-addon1">Max. student per faculty/lab</span>
+          </div>
+          <input type="number" class="form-control" value="{{task.p_val}}" aria-label="p_value" aria-describedby="basic-addon1" id = "p_value">
+        </div>
+
+
+
+
+        <div class="btn-group btn-group" style = "width: 100%">
+          <button type="button" class="btn btn-light border" style = "width: 14.3%" data-toggle="tooltip" data-placement="top" title="Save data in the model" onclick="save()">Save</button>
+          <button type="button" class="btn btn-light border" style = "width: 14.3%" data-toggle="tooltip" data-placement="top" title="Save data and go to next step" onclick="save(go=true)">Save & Next Step</button>
+        </div>
+
+
+      </div>
+
+
+
+    </div>
+  </div>
+  <br/>
+
+</section>
+{% endblock content %}
+
+{% block jscode %}
+<script type="text/javascript">
+  function save(go = false){
+
+    alertify.confirm('Confirm', 'Confirm?',
+    function() {
+      var el = document.getElementsByName("csrfmiddlewaretoken");
+      csrf_value = el[0].getAttribute("value");
+      jQuery.ajax({
+        method: "POST",
+        url: "/ajax/step5save",
+        data: {p_val: $('#p_value').val(), n_val: $('#n_value').val(), t_val: $('#t_value').val(), csrfmiddlewaretoken: csrf_value, modelid: "{{task.id}}"},
+        success: function (data) {
+          if (data.success) {
+            if (go) {
+              window.location = "/dashboard/modellist/{{task.id}}/6"
+            } else {
+              alertify.success("Data Saved")
+            }
+          } else {
+            for (var i = 0; i < data.msg.length; i++) {
+              alertify.error(data.msg[i])
+            }
+          }
+        }
+      })
+  },
+    null).set('labels',{ok:'Yes', cancel:'Cancel'}).set('closable', false);
+  }
+</script>
+
+
+
+
+{% endblock jscode %}

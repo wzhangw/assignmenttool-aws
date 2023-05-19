@@ -1,0 +1,149 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block content %}
+
+<section id="main">
+  {% csrf_token %}
+  <br/>
+
+  <div class="card" style = "min-width:950px">
+
+    <div class="card-header">
+        <div class="row align-items-center">
+          <div class = "col text-left">
+            <div class = "btn-group">
+              <a  class = "btn btn-light btn-sm" href = '/dashboard'>
+                <ion-icon name="arrow-back-circle-outline" class = "iconpiclarger align-middle"></ion-icon> Dashborad
+              </a>
+              <a  class = "btn btn-light btn-sm" href = '/dashboard/modellist'>
+                <ion-icon name="list" class = "iconpiclarger align-middle"></ion-icon> Model List
+              </a>
+              <a  class = "btn btn-light btn-sm" href = '/dashboard/modellist/{{task.id}}'>
+                <ion-icon name="aperture" class = "iconpiclarger align-middle"></ion-icon> {{task.name}}
+              </a>
+            </div>
+          </div>
+
+          <div class = "col text-center">
+            <h4 class = "card-title align-vertical text-body" >Room Data</h4>
+          </div>
+          <div class = "col text-right invisible">
+            <div class = "btn-group">
+              <a  class = "btn btn-light btn-sm" href = '/'>
+                <ion-icon name="arrow-back-circle-outline" class = "iconpiclarger align-middle"></ion-icon> Dashborad
+              </a>
+              <a  class = "btn btn-light btn-sm" href = '/'>
+                <ion-icon name="list" class = "iconpiclarger align-middle"></ion-icon> Model List
+              </a>
+              <a  class = "btn btn-light btn-sm" href = '/'>
+                <ion-icon name="aperture" class = "iconpiclarger align-middle"></ion-icon> {{task.name}}
+              </a>
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+    <div class="card-body">
+      <br/>
+
+      <div class = "container "style="width: 40%; left: 30%">
+        {% if task.type == 2 %}
+        <div class="form-group">
+          <label for="FacultyTime">Select Room Time Data: </label>
+            <select class="form-control" id="RoomTime">
+              {% for doc in user.datadocument_set.all %}
+                {% if doc.datatype == 'Room Time' %}
+                  <option value = "{{doc.id}}">{{doc.shortfilename}}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+          <label for="FacultyTime">Select Room Capacity Data: </label>
+            <select class="form-control" id="RoomCapacity">
+              {% for doc in user.datadocument_set.all %}
+                {% if doc.datatype == 'Room Capacity' %}
+                  <option value = "{{doc.id}}">{{doc.shortfilename}}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+          <label for="FacultyTime">Specify If Activity Needs Rooms:</label>
+            <select class="form-control" id="FacultyRoom">
+              {% for doc in user.datadocument_set.all %}
+                {% if doc.datatype == 'Faculty Room' %}
+                  <option value = "{{doc.id}}">{{doc.shortfilename}}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
+        </div>
+        {% endif %}
+        <br/>
+        <button class = "btn btn-light border btn-block" onclick = "skipstep6()">Skip</button>
+        {% if task.type == 2 %}
+        <button class = "btn btn-light border btn-block" onclick = "confirmstep6()">Confirm</button>
+        {% endif %}
+      </div>
+      <br/>
+
+
+
+    </div>
+  </div>
+  <br/>
+
+</section>
+{% endblock content %}
+
+{% block jscode %}
+<script type="text/javascript">
+  function confirmstep6(){
+    var roomtime = $('#RoomTime').val();
+    var roomcap = $('#RoomCapacity').val();
+    var needroom = $('FacultyRoom').val();
+    alertify.confirm('Confirm', 'Confirm?',
+    function() {
+      var el = document.getElementsByName("csrfmiddlewaretoken");
+      csrf_value = el[0].getAttribute("value");
+      jQuery.ajax({
+        method: "POST",
+        url: "/dashboard/modellist/{{task.id}}/6",
+        data: {roomtime:roomtime,roomcap:roomcap, needroom:needroom, csrfmiddlewaretoken: csrf_value, mode:'confirm'},
+        success: function (data) {
+          if (data.success) {
+            window.location.reload();
+          }
+        }
+      })
+  },
+    null).set('labels',{ok:'Yes', cancel:'Cancel'}).set('closable', false);
+  }
+
+function skipstep6(){
+
+  alertify.confirm('Skip', 'Skip this step??',
+  function() {
+    var el = document.getElementsByName("csrfmiddlewaretoken");
+    csrf_value = el[0].getAttribute("value");
+    jQuery.ajax({
+      method: "POST",
+      url: "/dashboard/modellist/{{task.id}}/6",
+      data: {mode: 'skip',csrfmiddlewaretoken: csrf_value},
+      success: function (data) {
+        if (data.success) {
+          window.location.reload();
+        }
+      }
+    })
+},
+  null).set('labels',{ok:'Yes', cancel:'Cancel'}).set('closable', false);
+
+  }
+</script>
+
+{% endblock jscode %}

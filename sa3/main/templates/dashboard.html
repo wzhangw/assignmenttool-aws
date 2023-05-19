@@ -1,0 +1,91 @@
+{% extends "main.html" %}
+{% load static %}
+{% load tz %}
+{% block extrahead %}
+
+{% endblock extrahead %}
+
+{% block content %}
+
+<section id="main">
+  {% csrf_token %}
+
+  <br/>
+  <div class="card">
+
+    <div class="card-header">
+        <div class="row align-items-center">
+          <div class = "col text-left">
+            <h4 class = "card-title align-vertical text-body" >Welcome, {{user.username}}</h4>
+          </div>
+          <div class = "col text-right">
+            <div class="btn-group" role="group">
+            {% if user.is_staff %}
+            <a  class = "btn btn-light" href = 'admin'>
+              <ion-icon name="library" class = "iconpiclarger align-middle"></ion-icon> Admin
+            </a>
+            {% endif %}
+            <a  class = "btn btn-light" href = 'profile'>
+              <ion-icon name="person" class = "iconpiclarger align-middle"></ion-icon> My Profile
+            </a>
+
+            <a  class = "btn btn-light" href = 'logout'>
+              <ion-icon name="exit" class = "iconpiclarger align-middle"></ion-icon> Logout
+            </a>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+
+      <div class = "container" style = "width: 75%; left:12.5%">
+        <div class="row text-center">
+
+          <!--div class="col-sm" >
+              <div class="div-square module" data-toggle="tooltip" data-placement="top" title="Here you can find published case studies">
+                   <a href="dashboard/datafiles">
+                     <ion-icon name="pie-chart"></ion-icon>
+                     <h6>Data Files</h6>
+                   </a>
+              </div>
+          </div-->
+
+          <div class="col-sm">
+              <div class="div-square module" data-toggle="tooltip" data-placement="top" title="Here you can manage your own models">
+                   <a href="dashboard/modellist" >
+                     <ion-icon name="cube"></ion-icon>
+                     <h6>Manage Models</h6>
+                   </a>
+              </div>
+          </div>
+
+        </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="text-muted text-center">
+    <br/>
+    <div style = "font-size: 0.6em;">Copyright &copy 2020 Board of Regents of the University of Wisconsin System </div>
+</div>
+
+  <br/>
+  <br/>
+</section>
+{% endblock content %}
+{% block jscode %}
+<script>
+  $(".div-square module").hover(function(){
+      $( this ).animate({'color': '#000000'}, 180);
+  }, function(){
+      $( this ).animate({'color': '#474747'}, 180);
+  });
+
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+
+{% endblock jscode%}

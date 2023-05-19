@@ -1,0 +1,140 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block content %}
+
+<section id="main">
+  {% csrf_token %}
+  <br/>
+
+  <div class="card" style = "min-width:950px">
+
+    <div class="card-header">
+        <div class="row align-items-center">
+          <div class = "col text-left">
+            <div class = "btn-group">
+              <a  class = "btn btn-light btn-sm" href = '/dashboard'>
+                <ion-icon name="arrow-back-circle-outline" class = "iconpiclarger align-middle"></ion-icon> Dashborad
+              </a>
+              <a  class = "btn btn-light btn-sm" href = '/dashboard/modellist'>
+                <ion-icon name="list" class = "iconpiclarger align-middle"></ion-icon> Model List
+              </a>
+              <a  class = "btn btn-light btn-sm" href = '/dashboard/modellist/{{task.id}}'>
+                <ion-icon name="aperture" class = "iconpiclarger align-middle"></ion-icon> {{task.name}}
+              </a>
+            </div>
+          </div>
+
+          <div class = "col text-center">
+            <h4 class = "card-title align-vertical text-body" >Model Results</h4>
+          </div>
+          <div class = "col text-right invisible">
+            <div class = "btn-group">
+              <a  class = "btn btn-light btn-sm" href = '/'>
+                <ion-icon name="arrow-back-circle-outline" class = "iconpiclarger align-middle"></ion-icon> Dashborad
+              </a>
+              <a  class = "btn btn-light btn-sm" href = '/'>
+                <ion-icon name="list" class = "iconpiclarger align-middle"></ion-icon> Model List
+              </a>
+              <a  class = "btn btn-light btn-sm" href = '/'>
+                <ion-icon name="aperture" class = "iconpiclarger align-middle"></ion-icon> {{task.name}}
+              </a>
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+    <div class="card-body">
+      <br/>
+
+      <div class = "container "style="width: 40%; left: 30%">
+        <div class="btn-group btn-group" style = "width: 100%">
+          <button type="button" class="btn btn-light border" style = "width: 14.3%" data-toggle="tooltip" data-placement="top" title="Upload CSV data file" onclick="viewfaculty()">View Faculty Results</button>
+          <button type="button" class="btn btn-light border" style = "width: 14.3%" data-toggle="tooltip" data-placement="top" title="Download data template file" onclick="viewstudent()">View Student Results</button>
+        </div>
+      </div>
+
+      <div class = "container mt-4 p-0 border" style="width: 100%; left: 0%; height: 400px; overflow: scroll; box-shadow: 7px 7px 7px #d3d3d3; font-size:18px" id = "contentbox">
+
+      </div>
+
+      <script type="text/javascript">
+        var intFrameHeight = $(window).height()
+        var contentheight = 360/760*intFrameHeight;
+        try {
+        $("#contentbox").css('height', contentheight);}
+        catch {}
+
+        var facresults = false
+
+        {% if facultyresults %}
+        facresults = {{facultyresults|safe}}
+        {% endif %}
+
+        var sturesults = false
+
+        {% if facultyresults %}
+        sturesults = {{studentresults|safe}}
+        {% endif %}
+
+        function viewfaculty(){
+          $('#contentbox').html('')
+          if (facresults){
+          const container = document.getElementById('contentbox');
+          const hot = new Handsontable(container, {
+            licenseKey: 'non-commercial-and-evaluation',
+            data: facresults,
+            rowHeaders: true,
+            colHeaders: true,
+            readOnly: true,
+            fixedColumnsLeft: 1,
+            fixedRowsTop: 1,
+            colWidths: 100,
+            rowHeights: 18,
+          });
+          } else {
+            alertify.error("Results not available yet!")
+          }
+        }
+
+        function viewstudent(){
+          $('#contentbox').html('')
+          if (sturesults) {
+          const container = document.getElementById('contentbox');
+          const hot = new Handsontable(container, {
+            licenseKey: 'non-commercial-and-evaluation',
+            data: sturesults,
+            rowHeaders: true,
+            colHeaders: true,
+            readOnly: true,
+            fixedColumnsLeft: 1,
+            fixedRowsTop: 1,
+            colWidths: 100,
+            rowHeights: 18,
+          });
+        } else {
+          alertify.error("Results not available yet!")
+        }
+        }
+
+      </script>
+
+
+      <div class = "container mt-4"style="width: 40%; left: 30%">
+        <div class="btn-group btn-group" style = "width: 100%">
+          <button type="button" class="btn btn-light border" style = "width: 14.3%" data-toggle="tooltip" data-placement="top" title="Download data template file" onclick="window.location = '/dashboard/modellist/{{task.id}}'">Go Back</button>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <br/>
+
+</section>
+{% endblock content %}
+
+{% block jscode %}
+
+{% endblock jscode %}

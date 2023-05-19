@@ -1,0 +1,260 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>SAAA</title>
+<link href="{% static 'jsfile/bootstrap-4.3.1-dist/css/bootstrap.css' %}" rel="stylesheet"/>
+<link href="{% static 'jsfile/noUiSlider-12.1.0/nouislider.css' %}" rel="stylesheet"/>
+<link href="{% static 'cssfile/jquery/jquery-ui.css' %}" rel="stylesheet"/>
+<link href="{% static 'jsfile/alertifyjs/css/alertify.css' %}" rel="stylesheet"/>
+<link href="{% static 'jsfile/alertifyjs/css/themes/semantic.css' %}" rel="stylesheet"/>
+
+<script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+<script src="{% static 'jsfile/jquery/jquery-1.12.4.js' %}"></script>
+<script src="{% static 'jsfile/jquery/jquery-3.4.1.js' %}"></script>
+<script src="{% static 'jsfile/jquery/jquery-ui.js' %}"></script>
+<script src="{% static 'jsfile/alertifyjs/alertify.min.js' %}"></script>
+<script src="{% static 'jsfile/bootstrap-4.3.1-dist/js/popper.min.js' %}"></script>
+<script src="{% static 'jsfile/bootstrap-4.3.1-dist/js/bootstrap.js' %}"></script>
+<script>(function(H){H.className=H.className.replace(/\bno-js\b/,'')})(document.documentElement)</script>
+<script src="{% static 'jsfile/_uw-style.min.js' %}"></script>
+
+<link rel="stylesheet" href="{% static 'cssfile/fonts/uw160/fonts.0.0.1.css' %}">
+<link href="{% static 'cssfile/main.css' %}" rel="stylesheet" type="text/css"/>
+
+<script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css" rel="stylesheet">
+
+<script src="{% static 'jsfile/draw2d-master/dist/draw2d.js' %}"> </script>
+<script type = "module" src="{% static 'jsfile/draw2d-master/src/Canvas.js' %}"></script>
+<script src="{% static 'jsfile/draw2d-master/customize/MyConnection.js' %}"></script>
+<script src="{% static 'jsfile/draw2d-master/customize/MyTransConnection.js' %}"></script>
+
+{% block extrahead %}
+{% endblock extrahead %}
+</head>
+
+<body>
+  <div id="wrapper">
+
+  <a class="uw-show-on-focus" href="#main" id="uw-skip-link">Skip to main content</a>
+
+  <div class="uw-global-bar" role="navigation">
+    <a class="uw-global-name-link" href="http://www.wisc.edu" aria-label="University home page">U<span>niversity <span class="uw-of">of</span> </span>W<span>isconsin</span>–Madison</a>
+  </div>
+  <br>
+
+<header id="branding" class="uw-header">
+  <div class = "container-fluid">
+    <div class = "row justify-content-between">
+      <div class = "col-7 text-left">
+        <div class="uw-header-container">
+          <div class="uw-header-crest-title">
+            <div class="uw-header-crest">
+              <a href="/"><img class="uw-crest-svg" src="{% static 'figure/uw-crest.svg' %}" alt="Link to University of Wisconsin-Madison home page"></a>
+            </div>
+            <div class="uw-title-tagline">
+              <h1 id="site-title" class="uw-site-title">
+                <a href="/" rel="home">SA<sup>3</sup></a>
+              </h1>
+              <div id="site-description" class="uw-site-tagline">Scheduling And Assignment Assistant</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class = "col-4 text-right">
+        <button class="uw-mobile-menu-button-bar uw-mobile-menu-button-bar-reversed uw-is-closed " data-menu="uw-top-menus" aria-label="Open menu" aria-expanded="false" aria-controls="uw-top-menus">Menu<svg aria-hidden="true" focusable="false"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#uw-symbol-menu"></use></svg><svg aria-hidden="true" focusable="false"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#uw-symbol-close"></use></svg></button>
+
+        <div id="uw-top-menus" class="uw-is-visible uw-horizontal" aria-hidden="false">
+          <div class="uw-main-nav">
+            <nav class="uw-nav-menu uw-nav-menu-reverse" aria-label="Main Menu">
+              <ul id="uw-main-nav">
+                <li>
+                  <a href="/">Home</a>
+                </li>
+                <li>
+                  <a href="/about">About</a>
+                </li>
+                <!--li>
+                  <a href="/">Tutorial</a>
+                </li-->
+                <li>
+                  <a href="/dashboard">Dashboard</a>
+                </li>
+                <li>
+                  <a href="/contact">Contact</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+  {% block content %}
+  {% csrf_token %}
+
+<section id="main">
+    <br/>
+
+
+            <div class="container text-center" style = "width: 100%;left:0">
+                <div  id = "gfx_holder1" class = "border" style = "position: relative; width:100%; height: 520px;left:1%;box-shadow: 7px 7px 7px #d3d3d3">
+                </div>
+          </div>
+        <br/>
+
+        <br/>
+        <div class = "text-center" style = "font-size: 0.6em;">Copyright &copy 2020 Board of Regents of the University of Wisconsin System </div>
+
+
+</section>
+
+<div id = "overlaycontainer" style="display: none">
+  <div id = "overlay">
+  </div>
+</div>
+  {% endblock content %}
+
+</div>
+</body>
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip({
+    html: true
+  });
+});
+</script>
+
+{% block jscode %}
+
+
+<script>
+
+
+$(".parent-toggler").click(function(){
+  ele = $(this)
+  if ( ele.css('font-weight') == 700 ) {
+    ele.css({'font-weight':700});
+      setTimeout(function(){ ele.css({'font-weight':700})}, 30)
+      setTimeout(function(){ ele.css({'font-weight':600})}, 60)
+      setTimeout(function(){ ele.css({'font-weight':500})},90)
+      setTimeout(function(){ ele.css({'font-weight':400})},120)
+
+      setTimeout(function(){
+        ele.css({'background-color':'#fff'})
+        ele.css({'color': '#474747'})
+      },120)
+      iconid = '#' + ele.attr('id') + 'icon'
+      $(iconid).attr('name', 'add-outline')
+      ele.css({'width': '100%'})
+      ele.css({'margin-left': '0'})
+  } else {
+
+    ele.css({'font-weight':400});
+      setTimeout(function(){ ele.css({'font-weight':400})}, 30)
+      setTimeout(function(){ ele.css({'font-weight':500})}, 60)
+      setTimeout(function(){ ele.css({'font-weight':600})},90)
+      setTimeout(function(){ ele.css({'font-weight':700})},120)
+
+      setTimeout(function(){
+        ele.css({'background-color':'#c5050c'})
+        ele.css({'color': 'white'})
+      },120)
+      iconid = '#' + ele.attr('id') + 'icon'
+      $(iconid).attr('name', 'remove-outline')
+      ele.css({'width': '105%'})
+      ele.css({'margin-left': '-2.5%'})
+
+  }
+});
+
+</script>
+<script type="text/javascript">
+  var intFrameHeight = window.innerHeight;
+  var mapheight = 520/760*intFrameHeight;
+  var cardheight = mapheight - 20;
+  $("#gfx_holder1").css('height', mapheight);
+  $("#datalayercard").css('height', cardheight)
+
+  var createConnection=function(){
+   var con = new draw2d.Connection();
+   con.setRouter(new draw2d.layout.connection.SplineConnectionRouter());
+   return con;
+};
+
+  function initcanvas(){
+    canvas = new draw2d.Canvas('gfx_holder1');
+    canvas.installEditPolicy( new draw2d.policy.connection.DragConnectionCreatePolicy({
+     createConnection: createConnection
+  }));
+  }
+
+  function addcircle(name, mode){
+    var figure = new draw2d.shape.basic.Circle({height: 40, width:40});
+    var title
+    figure.add(new draw2d.shape.basic.Label({text:name, x:55, y:25, stroke:0}), new draw2d.layout.locator.BottomLocator());
+
+    if (mode == 1){
+      var rawcolor = new draw2d.util.Color("#2ad148")
+      figure.resetPorts();
+      figure.createPort("input", new draw2d.layout.locator.LeftLocator()).setSelectable(false).setResizeable(false)
+      figure.setBackgroundColor(rawcolor)
+      figure.setColor(rawcolor.darker())
+      title = "Final Product Information"
+    }
+
+    if (mode == 2) {
+      var rawcolor = new draw2d.util.Color("#FDE08C")
+      figure.resetPorts();
+      figure.createPort("output", new draw2d.layout.locator.RightLocator()).setSelectable(false).setResizeable(false)
+      figure.setBackgroundColor(rawcolor)
+      figure.setColor(rawcolor.darker())
+      title = "Intermediate Product Information"
+    }
+
+    return figure
+  }
+
+  $(window).on('load',function () {
+  initcanvas()
+
+  var width = $("#gfx_holder1").width()
+  var height = $("#gfx_holder1").height()
+
+  var students = ['Student 1','Student 2','Student 3','Student 4']
+  var faculty = ['Professor A','Professor B','Professor C']
+  var stufig = []
+  var facfig = []
+
+  for (var i = 0 ; i < students.length; i++) {
+    var fig = addcircle(students[i], 2)
+    canvas.add(fig, 0.2*width, (i+1)*height/(students.length+1)-20);
+    stufig.push(fig)
+  }
+
+  for (var i = 0 ; i < faculty.length; i++) {
+    var fig = addcircle(faculty[i], 1)
+    canvas.add(fig, 0.8*width, (i+1)*height/(faculty.length+1)-20);
+    facfig.push(fig)
+  }
+
+  cncls = [[0,0],[0,1],[1,0],[1,2],[2,0],[2,1],[3,0],[3,1],[3,2],]
+
+  for (var i = 0; i < cncls.length; i++) {
+    var c = createConnection();
+    c.setSource(stufig[cncls[i][0]].getOutputPort(0));
+    c.setTarget(facfig[cncls[i][1]].getInputPort(0));
+    canvas.add(c);
+  }
+  });
+
+
+</script>
+{% endblock jscode %}
+</html>

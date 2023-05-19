@@ -1,0 +1,7 @@
+time,Professor 1,Professor 2,Professor 3,Professor 4,Professor 5
+Time 1,Student 3,/,Student 1,Student 5,/
+Time 2,Student 2,Student 4,/,Student 1,Student 5
+Time 3,/,Student 3,/,Student 2,Student 4
+Time 4,Student 1,Student 2,Student 5,/,/
+Time 5,/,Student 1,Student 2,Student 4,Student 3
+total,3.0,4.0,3.0,4.0,3.0
